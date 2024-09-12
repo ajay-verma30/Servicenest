@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import AuthProvider from './Authentication/authentication';
+import Login from './Views/Login';
+import Ticket from './Views/Ticket';
+import Tickets from './Views/Tickets';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Router>
+          <AuthProvider>
+      <Routes>
+        <Route>
+          <Route path="/ticketlist" element={<Tickets />} />
+          <Route path="/ticket/:tID" element={<Ticket/>} />
+          <Route path="/login" element={<Login/>} />
+        </Route>
+      </Routes>
+      </AuthProvider>
+    </Router>
   );
 }
 
